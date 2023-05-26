@@ -1,4 +1,4 @@
-package de.dhbw.christian.adapters.inventoryItem;
+package de.dhbw.christian.adapters.sectionproduct;
 
 import lombok.Getter;
 import lombok.Setter;

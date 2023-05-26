@@ -1,6 +1,6 @@
 package de.dhbw.christian.domain.section;
 
-import de.dhbw.christian.domain.inventoryitem.InventoryItem;
+import de.dhbw.christian.domain.sectionproduct.SectionProduct;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +19,8 @@ public class Section {
 
     private boolean trayMandatory = false;
 
-    @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
-    private List<InventoryItem> inventoryItems = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name="SECTION_PRODUCT_ID")
+    private List<SectionProduct> sectionProducts = new ArrayList<>();
 
 }

@@ -53,8 +53,6 @@ public class ProductController {
         Product product = JsonToProductMapper.map(context.body());
         product.setEan(ean);
 
-        product.setInventoryItems(productApplicationService.findByEAN(ean).getInventoryItems());
-
         product = productApplicationService.save(product);
         return ProductToProductResourceMapper.map(product);
     }

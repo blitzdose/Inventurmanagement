@@ -1,7 +1,7 @@
 package de.dhbw.christian.domain.product;
 
 import de.dhbw.christian.EAN.abstraction.EAN;
-import de.dhbw.christian.domain.inventoryitem.InventoryItem;
+import de.dhbw.christian.domain.sectionproduct.SectionProduct;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,7 +34,6 @@ public class Product {
     @Temporal(TemporalType.DATE)
     private Date expirationDate;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<InventoryItem> inventoryItems = new ArrayList<>();
-
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<SectionProduct> sectionProductList= new ArrayList<>();
 }

@@ -3,8 +3,6 @@ package de.dhbw.christian.plugins.persistence.hibernate.Section;
 import de.dhbw.christian.domain.section.Section;
 import de.dhbw.christian.domain.section.SectionRepository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 import java.util.List;
 
@@ -51,8 +49,13 @@ public class HibernateSectionRepository implements SectionRepository {
     public void deleteByName(String name) {
         entityManager.getTransaction().begin();
         Section section = this.findByName(name);
-        entityManager.remove(section);
-        entityManager.flush();
-        entityManager.getTransaction().commit();
+        try {
+            entityManager.remove(section);
+            entityManager.flush();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw new RuntimeException("Section does not exist");
+        }
     }
 }

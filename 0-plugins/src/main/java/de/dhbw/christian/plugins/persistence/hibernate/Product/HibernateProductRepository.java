@@ -4,8 +4,6 @@ import de.dhbw.christian.EAN.abstraction.EAN;
 import de.dhbw.christian.domain.product.Product;
 import de.dhbw.christian.domain.product.ProductRepository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 import java.util.List;
 
@@ -62,8 +60,13 @@ public class HibernateProductRepository implements ProductRepository {
     public void deleteByEAN(EAN ean) {
         entityManager.getTransaction().begin();
         Product product = this.findByEAN(ean);
-        entityManager.remove(product);
-        entityManager.flush();
-        entityManager.getTransaction().commit();
+        try {
+            entityManager.remove(product);
+            entityManager.flush();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        }
     }
 }
