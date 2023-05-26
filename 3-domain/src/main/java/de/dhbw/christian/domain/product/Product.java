@@ -16,11 +16,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Cacheable(value = false)
+@Cacheable(false)
 public class Product {
 
-    @Column(length = 13, name = "EAN")
     @Id
+    @Column(length = 13, name = "PRODUCT_EAN")
     private EAN ean;
 
     @Column(nullable = false)
@@ -36,5 +36,5 @@ public class Product {
     private Date expirationDate;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
-    private List<SectionProduct> sectionProductList = new ArrayList<>();
+    private List<SectionProduct> sectionProducts = new ArrayList<>();
 }

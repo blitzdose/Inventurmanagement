@@ -15,8 +15,8 @@ import lombok.*;
 @Cacheable(false)
 public class SectionProduct {
 
-    @Column(length = 13, name = "EAN")
     @Id
+    @Column(length = 13, name = "EAN")
     private EAN ean;
 
     @ManyToOne

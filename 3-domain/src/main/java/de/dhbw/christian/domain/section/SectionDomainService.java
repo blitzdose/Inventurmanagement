@@ -11,7 +11,7 @@ public class SectionDomainService {
         if (section.isTrayMandatory() && sectionProduct.getTray() == null) {
             throw new RuntimeException("Regal / Fach ist notwendig");
         }
-        if (section.getSectionProducts().stream().anyMatch(sectionProduct1 -> sectionProduct1.getProduct().getEan().equals(sectionProduct.getProduct().getEan()))) {
+        if (section.getSectionProducts().stream().anyMatch(sectionProduct1 -> sectionProduct1.getEan().equals(sectionProduct.getEan()))) {
             throw new RuntimeException("Produkt existiert in Bereich");
         }
         section.getSectionProducts().add(sectionProduct);
@@ -26,7 +26,7 @@ public class SectionDomainService {
         if (newSection.isTrayMandatory() && sectionProduct.getTray() == null) {
             throw new RuntimeException("Regal / Fach ist notwendig in neuem Bereich");
         }
-        if (newSection.getSectionProducts().stream().anyMatch(sectionProduct1 -> sectionProduct1.getProduct().getEan().equals(sectionProduct.getProduct().getEan()))) {
+        if (newSection.getSectionProducts().stream().anyMatch(sectionProduct1 -> sectionProduct1.getEan().equals(sectionProduct.getEan()))) {
             throw new RuntimeException("Produkt existiert in Bereich");
         }
         oldSection.getSectionProducts().remove(sectionProduct);
@@ -62,7 +62,7 @@ public class SectionDomainService {
     }
 
     private SectionProduct getSectionProductByEAN(Section section, EAN ean) {
-        Optional<SectionProduct> optionalSectionProduct = section.getSectionProducts().stream().filter(sectionProduct -> sectionProduct.getProduct().getEan().equals(ean)).findFirst();
+        Optional<SectionProduct> optionalSectionProduct = section.getSectionProducts().stream().filter(sectionProduct -> sectionProduct.getEan().equals(ean)).findFirst();
         if (optionalSectionProduct.isEmpty()) {
             throw new RuntimeException("Produkt nicht gefunden");
         }

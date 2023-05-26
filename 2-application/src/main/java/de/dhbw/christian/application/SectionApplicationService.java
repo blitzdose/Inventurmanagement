@@ -28,12 +28,15 @@ public class SectionApplicationService {
         return this.sectionRepository.save(section);
     }
     public void deleteByName(String name) {
+        Section section = this.findByName(name);
+        section.getSectionProducts().clear();
+        this.save(section);
         this.sectionRepository.deleteByName(name);
     }
 
     public SectionProduct findByNameAndEAN(String name, EAN ean) {
         Section section = this.findByName(name);
-        Optional<SectionProduct> optionalSectionProduct = section.getSectionProducts().stream().filter(sectionProduct -> sectionProduct.getProduct().getEan().equals(ean)).findFirst();
+        Optional<SectionProduct> optionalSectionProduct = section.getSectionProducts().stream().filter(sectionProduct -> sectionProduct.getEan().equals(ean)).findFirst();
         if (optionalSectionProduct.isPresent()) {
             return optionalSectionProduct.get();
         }
