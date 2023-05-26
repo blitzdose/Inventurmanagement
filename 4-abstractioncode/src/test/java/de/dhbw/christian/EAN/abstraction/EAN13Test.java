@@ -1,16 +1,17 @@
-package de.dhbw.christian.EAN;
+package de.dhbw.christian.EAN.abstraction;
 
+import de.dhbw.christian.EAN.abstraction.exceptions.EANException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class EAN8Test {
+public class EAN13Test {
 
-    private final String eanCode1 = "62514170";
-    private final String eanCode2 = "62514170";
-    private final String eanCode3 = "642187";
-    private final String eanCode4 = "64218768";
+    private final String eanCode1 = "1358456248705";
+    private final String eanCode2 = "1358456248705";
+    private final String eanCode3 = "652458723";
+    private final String eanCode4 = "6524587236909";
 
     @Test
     public void create() {
@@ -27,10 +28,10 @@ public class EAN8Test {
 
     @Test
     public void testLength() {
-        assertThrows(RuntimeException.class, () -> new EAN(eanCode3));
+        assertThrows(EANException.class, () -> new EAN(eanCode3));
     }
     @Test
     public void testChecksum() {
-        assertThrows(RuntimeException.class, () -> new EAN(eanCode4));
+        assertThrows(EANException.class, () -> new EAN(eanCode4));
     }
 }

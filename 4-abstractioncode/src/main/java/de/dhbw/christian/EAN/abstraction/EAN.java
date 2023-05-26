@@ -1,13 +1,14 @@
-package de.dhbw.christian.EAN;
+package de.dhbw.christian.EAN.abstraction;
+import de.dhbw.christian.EAN.abstraction.exceptions.EANException;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
 
 @Embeddable
-public class EAN implements Serializable {
+final public class EAN implements Serializable {
     private String ean;
 
-    protected EAN() {}
+    public EAN() {}
 
     public EAN(String ean) throws RuntimeException {
         validateEAN(ean);
@@ -16,10 +17,10 @@ public class EAN implements Serializable {
 
     public void validateEAN(String ean) throws RuntimeException {
         if (!ean.matches("^[0-9]{13}$|^[0-9]{8}$")) {
-            throw new RuntimeException("Ungültiges EAN-Format");
+            throw new EANException("Ungültiges EAN-Format");
         }
         if (!checkChecksum(ean)) {
-            throw new RuntimeException("Ungültige Prüfsumme");
+            throw new EANException("Ungültige Prüfsumme");
         }
     }
 
