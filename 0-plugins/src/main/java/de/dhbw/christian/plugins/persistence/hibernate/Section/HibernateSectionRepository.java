@@ -28,20 +28,11 @@ public class HibernateSectionRepository implements SectionRepository {
     public Section save(Section section) {
         entityManager.getTransaction().begin();
         Section persistentSection = entityManager.find(Section.class, section.getName());
-        if (persistentSection != null) {
-            section = merge(section, persistentSection);
-        } else {
+        if (persistentSection == null) {
             entityManager.persist(section);
         }
         entityManager.flush();
         entityManager.getTransaction().commit();
-        return section;
-    }
-
-    private Section merge(Section section, Section persistentSection) {
-        entityManager.detach(persistentSection);
-        persistentSection.setTrayMandatory(section.isTrayMandatory());
-        section = entityManager.merge(persistentSection);
         return section;
     }
 

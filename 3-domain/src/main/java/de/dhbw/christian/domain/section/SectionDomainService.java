@@ -17,6 +17,10 @@ public class SectionDomainService {
         section.getSectionProducts().add(sectionProduct);
     }
 
+    public void deleteProduct(Section section, EAN ean) {
+        section.getSectionProducts().remove(this.getSectionProductByEAN(section, ean));
+    }
+
     public void changeSection(Section oldSection, Section newSection, EAN ean) {
         SectionProduct sectionProduct = getSectionProductByEAN(oldSection, ean);
         if (newSection.isTrayMandatory() && sectionProduct.getTray() == null) {

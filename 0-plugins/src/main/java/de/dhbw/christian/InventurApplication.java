@@ -83,7 +83,7 @@ public class InventurApplication {
             if (aClass == SectionApplicationService.class) {
                 parameterObjects.add(new SectionApplicationService(new HibernateSectionRepository(entityManager), new SectionDomainService()));
             } else if (aClass == ProductApplicationService.class) {
-                parameterObjects.add(new ProductApplicationService(new HibernateProductRepository(entityManager)));
+                parameterObjects.add(new ProductApplicationService(new HibernateProductRepository(entityManager), new SectionApplicationService(new HibernateSectionRepository(entityManager), new SectionDomainService())));
             }
         });
         return type.getConstructors()[0].newInstance(parameterObjects.toArray());

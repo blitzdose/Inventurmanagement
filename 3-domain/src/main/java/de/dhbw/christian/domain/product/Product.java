@@ -16,6 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Cacheable(value = false)
 public class Product {
 
     @Column(length = 13, name = "EAN")
@@ -34,6 +35,6 @@ public class Product {
     @Temporal(TemporalType.DATE)
     private Date expirationDate;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<SectionProduct> sectionProductList= new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+    private List<SectionProduct> sectionProductList = new ArrayList<>();
 }

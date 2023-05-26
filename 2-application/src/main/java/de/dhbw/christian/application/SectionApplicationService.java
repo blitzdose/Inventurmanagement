@@ -46,6 +46,11 @@ public class SectionApplicationService {
 
     }
 
+    public void deleteProduct(Section section, EAN ean) {
+        sectionDomainService.deleteProduct(section, ean);
+        this.save(section);
+    }
+
     public void changeSection(Section oldSection, Section newSection, EAN ean) {
         sectionDomainService.changeSection(oldSection, newSection, ean);
         this.save(oldSection);

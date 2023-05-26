@@ -66,6 +66,7 @@ public class HibernateProductRepository implements ProductRepository {
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
+            e.printStackTrace();
             throw e;
         }
     }

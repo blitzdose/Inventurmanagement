@@ -2,6 +2,7 @@ package de.dhbw.christian.domain.sectionproduct;
 
 import de.dhbw.christian.EAN.abstraction.EAN;
 import de.dhbw.christian.domain.product.Product;
+import de.dhbw.christian.domain.section.Section;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,17 +12,24 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Cacheable(false)
 public class SectionProduct {
 
+    @Column(length = 13, name = "EAN")
     @Id
     private EAN ean;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "PRODUCT_EAN", nullable = false)
     private Product product;
 
     private long amount;
 
     private String tray;
+
+    @ManyToOne
+    @JoinColumn(name = "SECTION_NAME", nullable = false)
+    private Section section;
 
     public static class CustomBuilder extends SectionProduct.SectionProductBuilder {
         @Override

@@ -7,10 +7,12 @@ import de.dhbw.christian.domain.product.ProductRepository;
 import java.util.List;
 
 public class ProductApplicationService {
-    private  final ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final SectionApplicationService sectionApplicationService; //Pretty sure that's not the right way, but I was not able to cascade delete the sectionProducts
 
-    public ProductApplicationService(ProductRepository productRepository) {
+    public ProductApplicationService(ProductRepository productRepository, SectionApplicationService sectionApplicationService) {
         this.productRepository = productRepository;
+        this.sectionApplicationService = sectionApplicationService;
     }
 
     public List<Product> findAll() {
@@ -23,6 +25,7 @@ public class ProductApplicationService {
         return this.productRepository.save(product);
     }
     public void deleteByEAN(EAN ean) {
+        sectionApplicationService.findAll().forEach(section -> sectionApplicationService.deleteProduct(section, ean));
         this.productRepository.deleteByEAN(ean);
     }
 }
