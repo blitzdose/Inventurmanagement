@@ -18,4 +18,15 @@ public class ProductResource {
     private BigDecimal price;
     private Date expirationDate;
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ProductResource productResource) {
+            return productResource.getEan().equals(this.getEan()) &&
+                    productResource.getName().equals(this.getName()) &&
+                    productResource.getBrand().equals(this.getBrand()) &&
+                    productResource.getPrice().equals(this.getPrice()) &&
+                    productResource.getExpirationDate().equals(this.getExpirationDate());
+        }
+        return false;
+    }
 }

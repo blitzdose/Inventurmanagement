@@ -37,4 +37,13 @@ public class Product {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
     private List<SectionProduct> sectionProducts = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return ean + ", " +
+                name + ", " +
+                brand + ", " +
+                price + ", " +
+                expirationDate;
+    }
 }
