@@ -21,22 +21,22 @@ public class Product {
 
     @Id
     @Column(length = 13, name = "PRODUCT_EAN")
-    private EAN ean;
+    public EAN ean;
 
     @Column(nullable = false)
-    private String name;
+    public String name;
 
     @Column(nullable = false)
-    private String brand;
+    public String brand;
 
     @Column(nullable = false)
-    private BigDecimal price = new BigDecimal(0);
+    public BigDecimal price = new BigDecimal(0);
 
     @Temporal(TemporalType.DATE)
-    private Date expirationDate;
+    public Date expirationDate;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
-    private List<SectionProduct> sectionProducts = new ArrayList<>();
+    public List<SectionProduct> sectionProducts = new ArrayList<>();
 
     @Override
     public String toString() {

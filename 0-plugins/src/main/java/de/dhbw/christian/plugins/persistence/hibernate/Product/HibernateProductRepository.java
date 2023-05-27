@@ -4,8 +4,13 @@ import de.dhbw.christian.EAN.abstraction.EAN;
 import de.dhbw.christian.domain.product.Product;
 import de.dhbw.christian.domain.product.ProductRepository;
 import jakarta.persistence.EntityManager;
+import lombok.SneakyThrows;
 
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class HibernateProductRepository implements ProductRepository {
     final private EntityManager entityManager;
@@ -40,20 +45,16 @@ public class HibernateProductRepository implements ProductRepository {
 
     private Product merge(Product product, Product persistentProduct) {
         entityManager.detach(persistentProduct);
-        if (product.getName() != null) {
-            persistentProduct.setName(product.getName());
-        }
-        if (product.getBrand() != null) {
-            persistentProduct.setBrand(product.getBrand());
-        }
-        if (product.getPrice() != null) {
-            persistentProduct.setPrice(product.getPrice());
-        }
-        if (product.getExpirationDate() != null) {
-            persistentProduct.setExpirationDate(product.getExpirationDate());
-        }
-        product = entityManager.merge(persistentProduct);
-        return product;
+        Arrays.stream(product.getClass().getDeclaredFields()).forEach(new Consumer<>() {
+            @Override
+            @SneakyThrows
+            public void accept(Field field) {
+                if (field.get(product) != null && !field.get(product).equals(BigDecimal.ZERO)) {
+                    persistentProduct.getClass().getDeclaredField(field.getName()).set(persistentProduct, field.get(product));
+                }
+            }
+        });
+        return entityManager.merge(persistentProduct);
     }
 
     @Override
