@@ -14,8 +14,8 @@ import de.dhbw.christian.application.ProductApplicationService;
 import de.dhbw.christian.application.SectionApplicationService;
 import de.dhbw.christian.domain.section.Section;
 import de.dhbw.christian.domain.sectionproduct.SectionProduct;
-import de.dhbw.christian.javalin.extension.EndpointMapping;
-import de.dhbw.christian.javalin.extension.JavalinController;
+import de.dhbw.christian.javalin.annotations.EndpointMapping;
+import de.dhbw.christian.javalin.annotations.JavalinController;
 import io.javalin.http.Context;
 import io.javalin.http.HandlerType;
 

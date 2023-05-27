@@ -6,8 +6,8 @@ import de.dhbw.christian.adapters.product.ProductResource;
 import de.dhbw.christian.adapters.product.ProductToProductResourceMapper;
 import de.dhbw.christian.application.ProductApplicationService;
 import de.dhbw.christian.domain.product.Product;
-import de.dhbw.christian.javalin.extension.EndpointMapping;
-import de.dhbw.christian.javalin.extension.JavalinController;
+import de.dhbw.christian.javalin.annotations.EndpointMapping;
+import de.dhbw.christian.javalin.annotations.JavalinController;
 import io.javalin.http.Context;
 import io.javalin.http.HandlerType;
 

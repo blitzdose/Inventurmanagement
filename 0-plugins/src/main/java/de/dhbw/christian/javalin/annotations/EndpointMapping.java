@@ -1,4 +1,4 @@
-package de.dhbw.christian.javalin.extension;
+package de.dhbw.christian.javalin.annotations;
 
 import io.javalin.http.HandlerType;
 
