@@ -38,27 +38,24 @@ public class SectionDomainService {
         if (section.isTrayMandatory() && tray == null) {
             throw new RuntimeException("Regal / Fach ist notwendig");
         }
-        SectionProduct persistentSectionProduct = section.getSectionProducts().get(section.getSectionProducts().indexOf(sectionProduct));
-        persistentSectionProduct.setTray(tray);
-        return persistentSectionProduct;
+        sectionProduct.setTray(tray);
+        return sectionProduct;
     }
 
     public SectionProduct importAmount(Section section, EAN ean, long amount) {
         SectionProduct sectionProduct = getSectionProductByEAN(section, ean);
-        SectionProduct persistentSectionProduct = section.getSectionProducts().get(section.getSectionProducts().indexOf(sectionProduct));
-        persistentSectionProduct.setAmount(persistentSectionProduct.getAmount() + amount);
-        return persistentSectionProduct;
+        sectionProduct.setAmount(sectionProduct.getAmount() + amount);
+        return sectionProduct;
     }
 
     public SectionProduct sellAmount(Section section, EAN ean, long amount) {
         SectionProduct sectionProduct = getSectionProductByEAN(section, ean);
 
-        SectionProduct persistentSectionProduct = section.getSectionProducts().get(section.getSectionProducts().indexOf(sectionProduct));
-        if (persistentSectionProduct.getAmount() - amount < 0) {
+        if (sectionProduct.getAmount() - amount < 0) {
             throw new RuntimeException("Kann nicht mehr verkaufen, als vorhanden sind");
         }
-        persistentSectionProduct.setAmount(persistentSectionProduct.getAmount() - amount);
-        return persistentSectionProduct;
+        sectionProduct.setAmount(sectionProduct.getAmount() - amount);
+        return sectionProduct;
     }
 
     private SectionProduct getSectionProductByEAN(Section section, EAN ean) {

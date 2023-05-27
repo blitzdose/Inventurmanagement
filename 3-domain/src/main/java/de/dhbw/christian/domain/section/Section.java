@@ -20,7 +20,7 @@ public class Section {
 
     private boolean trayMandatory = false;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "section")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "section")
     private List<SectionProduct> sectionProducts = new ArrayList<>();
 
 }

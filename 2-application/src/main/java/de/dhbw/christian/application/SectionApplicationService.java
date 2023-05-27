@@ -61,14 +61,20 @@ public class SectionApplicationService {
     }
 
     public SectionProduct changeTray(Section section, EAN ean, String tray) {
-        return sectionDomainService.changeTray(section, ean, tray);
+        SectionProduct sectionProduct = sectionDomainService.changeTray(section, ean, tray);
+        this.save(section);
+        return sectionProduct;
     }
 
     public SectionProduct importAmount(Section section, EAN ean, long amount) {
-        return sectionDomainService.importAmount(section, ean, amount);
+        SectionProduct sectionProduct = sectionDomainService.importAmount(section, ean, amount);
+        this.save(section);
+        return sectionProduct;
     }
 
     public SectionProduct sellAmount(Section section, EAN ean, long amount) {
-        return sectionDomainService.sellAmount(section, ean, amount);
+        SectionProduct sectionProduct = sectionDomainService.sellAmount(section, ean, amount);
+        this.save(section);
+        return sectionProduct;
     }
 }
