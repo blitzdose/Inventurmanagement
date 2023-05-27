@@ -1,10 +1,10 @@
 package de.dhbw.christian.EAN.abstraction;
 
 import de.dhbw.christian.EAN.abstraction.exceptions.EANException;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class EAN8Test {
 
@@ -14,7 +14,7 @@ public class EAN8Test {
     private final String eanCode4 = "64218768";
 
     @Test
-    public void create() {
+    public void testCreate() {
         EAN ean = new EAN(eanCode1);
         assertEquals(eanCode1, ean.toString());
     }
