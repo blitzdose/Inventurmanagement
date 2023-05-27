@@ -80,11 +80,11 @@ public class SectionController {
 
         Section section = sectionApplicationService.findByName(context.pathParam("sectionName"));
 
-        SectionProduct sectionProduct = new SectionProduct.CustomBuilder()
-                .tray(inputSectionProductResource.getTray())
-                .amount(inputSectionProductResource.getAmount())
-                .product(productApplicationService.findByEAN(ean))
-                .section(section)
+        SectionProduct sectionProduct = new SectionProduct.SectionProductBuilder()
+                .setTray(inputSectionProductResource.getTray())
+                .setAmount(inputSectionProductResource.getAmount())
+                .setProduct(productApplicationService.findByEAN(ean))
+                .setSection(section)
                 .build();
 
         sectionApplicationService.addProduct(section, sectionProduct);

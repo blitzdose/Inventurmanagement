@@ -15,11 +15,11 @@ public class SectionProductTest {
         Product product = new Product();
         product.setEan(ean);
 
-        SectionProduct sectionProduct = new SectionProduct.CustomBuilder()
-                .section(new Section())
-                .amount(20)
-                .tray("Regal4Fach5")
-                .product(product)
+        SectionProduct sectionProduct = new SectionProduct.SectionProductBuilder()
+                .setSection(new Section())
+                .setAmount(20)
+                .setTray("Regal4Fach5")
+                .setProduct(product)
                 .build();
 
         assertEquals(ean, sectionProduct.getEan());
