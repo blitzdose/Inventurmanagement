@@ -1,13 +1,11 @@
 package de.dhbw.christian.plugins.rest;
 
 import de.dhbw.christian.EAN.abstraction.EAN;
+import de.dhbw.christian.adapters.JsonToObjectMapper;
 import de.dhbw.christian.adapters.section.SectionResource;
 import de.dhbw.christian.adapters.section.SectionToSectionResourceMapper;
 import de.dhbw.christian.adapters.sectionproduct.AmountResource;
-import de.dhbw.christian.adapters.sectionproduct.JsonToAmountResourceMapper;
-import de.dhbw.christian.adapters.section.JsonToSectionMapper;
 import de.dhbw.christian.adapters.sectionproduct.InputSectionProductResource;
-import de.dhbw.christian.adapters.sectionproduct.JsonToSectionProductResourceMapper;
 import de.dhbw.christian.adapters.sectionproduct.OutputSectionProductResource;
 import de.dhbw.christian.adapters.sectionproduct.SectionProductToSectionProductResourceMapper;
 import de.dhbw.christian.application.ProductApplicationService;
@@ -44,7 +42,7 @@ public class SectionController {
 
     @EndpointMapping(handlerType = HandlerType.POST, endpoint = "/{sectionName}")
     public SectionResource createSection(Context context) {
-        Section section = JsonToSectionMapper.map(context.body());
+        Section section = JsonToObjectMapper.map(Section.class, context.body());
         section.setName(context.pathParam("sectionName"));
         if (sectionApplicationService.findByName(section.getName()) != null) {
             throw new RuntimeException();
@@ -54,7 +52,7 @@ public class SectionController {
 
     @EndpointMapping(handlerType = HandlerType.PUT, endpoint = "/{sectionName}")
     public SectionResource updateSection(Context context) {
-        Section section = JsonToSectionMapper.map(context.body());
+        Section section = JsonToObjectMapper.map(Section.class, context.body());
         section.setName(context.pathParam("sectionName"));
         section.setSectionProducts(sectionApplicationService.findByName(section.getName()).getSectionProducts());
         return SectionToSectionResourceMapper.map(sectionApplicationService.save(section));
@@ -76,7 +74,7 @@ public class SectionController {
     public OutputSectionProductResource addProductToSection(Context context) {
         EAN ean = new EAN(context.pathParam("EAN"));
 
-        InputSectionProductResource inputSectionProductResource = JsonToSectionProductResourceMapper.map(context.body());
+        InputSectionProductResource inputSectionProductResource = JsonToObjectMapper.map(InputSectionProductResource.class, context.body());
 
         Section section = sectionApplicationService.findByName(context.pathParam("sectionName"));
 
@@ -116,7 +114,7 @@ public class SectionController {
     @EndpointMapping(handlerType = HandlerType.POST, endpoint = "{sectionName}/{EAN}/import")
     public OutputSectionProductResource importAmountProduct(Context context) {
         EAN ean = new EAN(context.pathParam("EAN"));
-        AmountResource amountResource = JsonToAmountResourceMapper.map(context.body());
+        AmountResource amountResource = JsonToObjectMapper.map(AmountResource.class, context.body());
 
         return SectionProductToSectionProductResourceMapper.map(sectionApplicationService.importAmount(
                 sectionApplicationService.findByName(context.pathParam("sectionName")),
@@ -128,7 +126,7 @@ public class SectionController {
     @EndpointMapping(handlerType = HandlerType.POST, endpoint = "{sectionName}/{EAN}/sell")
     public OutputSectionProductResource sellAmountProduct(Context context) {
         EAN ean = new EAN(context.pathParam("EAN"));
-        AmountResource amountResource = JsonToAmountResourceMapper.map(context.body());
+        AmountResource amountResource = JsonToObjectMapper.map(AmountResource.class, context.body());
 
         return SectionProductToSectionProductResourceMapper.map(sectionApplicationService.sellAmount(
                 sectionApplicationService.findByName(context.pathParam("sectionName")),
