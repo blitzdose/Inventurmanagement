@@ -8,9 +8,8 @@ import lombok.*;
 
 @Entity
 @Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Cacheable(false)
 public class SectionProduct {
 
@@ -29,6 +28,14 @@ public class SectionProduct {
     @ManyToOne
     @JoinColumn(name = "SECTION_NAME", nullable = false)
     private Section section;
+
+    public void setAmount(long amount) {
+        this.amount = amount;
+    }
+
+    public void setTray(String tray) {
+        this.tray = tray;
+    }
 
     public static class SectionProductBuilder {
         private EAN ean;
