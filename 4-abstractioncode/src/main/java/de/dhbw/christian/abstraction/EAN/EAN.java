@@ -1,5 +1,5 @@
-package de.dhbw.christian.EAN.abstraction;
-import de.dhbw.christian.EAN.abstraction.exceptions.EANException;
+package de.dhbw.christian.abstraction.EAN;
+import de.dhbw.christian.abstraction.EAN.exceptions.EANException;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;

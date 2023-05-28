@@ -2,7 +2,7 @@ package de.dhbw.christian.adapters.product;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import de.dhbw.christian.EAN.abstraction.EAN;
+import de.dhbw.christian.abstraction.EAN.EAN;
 import de.dhbw.christian.domain.product.Product;
 
 import java.math.BigDecimal;

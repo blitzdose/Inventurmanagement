@@ -1,6 +1,6 @@
 package de.dhbw.christian.application;
 
-import de.dhbw.christian.EAN.abstraction.EAN;
+import de.dhbw.christian.abstraction.EAN.EAN;
 import de.dhbw.christian.domain.section.Section;
 import de.dhbw.christian.domain.section.SectionDomainService;
 import de.dhbw.christian.domain.section.SectionRepository;

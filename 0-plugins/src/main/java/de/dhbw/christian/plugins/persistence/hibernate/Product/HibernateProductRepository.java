@@ -1,6 +1,6 @@
 package de.dhbw.christian.plugins.persistence.hibernate.Product;
 
-import de.dhbw.christian.EAN.abstraction.EAN;
+import de.dhbw.christian.abstraction.EAN.EAN;
 import de.dhbw.christian.domain.product.Product;
 import de.dhbw.christian.domain.product.ProductRepository;
 import jakarta.persistence.EntityManager;

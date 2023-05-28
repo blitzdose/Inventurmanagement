@@ -1,6 +1,6 @@
 package de.dhbw.christian.adapters.product;
 
-import de.dhbw.christian.EAN.abstraction.EAN;
+import de.dhbw.christian.abstraction.EAN.EAN;
 import de.dhbw.christian.domain.product.Product;
 import de.dhbw.christian.domain.sectionproduct.SectionProduct;
 import org.junit.Test;

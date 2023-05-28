@@ -1,6 +1,6 @@
 package de.dhbw.christian.domain.section;
 
-import de.dhbw.christian.EAN.abstraction.EAN;
+import de.dhbw.christian.abstraction.EAN.EAN;
 import de.dhbw.christian.domain.sectionproduct.SectionProduct;
 
 import java.util.Optional;

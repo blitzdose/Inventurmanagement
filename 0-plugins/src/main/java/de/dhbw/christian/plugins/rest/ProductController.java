@@ -1,6 +1,6 @@
 package de.dhbw.christian.plugins.rest;
 
-import de.dhbw.christian.EAN.abstraction.EAN;
+import de.dhbw.christian.abstraction.EAN.EAN;
 import de.dhbw.christian.adapters.product.JsonToProductMapper;
 import de.dhbw.christian.adapters.product.ProductResource;
 import de.dhbw.christian.adapters.product.ProductToProductResourceMapper;

@@ -1,6 +1,6 @@
 package de.dhbw.christian.domain.sectionproduct;
 
-import de.dhbw.christian.EAN.abstraction.EAN;
+import de.dhbw.christian.abstraction.EAN.EAN;
 import de.dhbw.christian.domain.product.Product;
 import de.dhbw.christian.domain.section.Section;
 import jakarta.persistence.*;

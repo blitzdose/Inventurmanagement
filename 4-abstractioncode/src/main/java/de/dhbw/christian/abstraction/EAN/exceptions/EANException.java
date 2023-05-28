@@ -1,4 +1,4 @@
-package de.dhbw.christian.EAN.abstraction.exceptions;
+package de.dhbw.christian.abstraction.EAN.exceptions;
 
 public class EANException extends RuntimeException {
     public EANException(String message) {

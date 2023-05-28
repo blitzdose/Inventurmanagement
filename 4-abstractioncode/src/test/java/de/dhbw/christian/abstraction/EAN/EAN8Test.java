@@ -1,17 +1,17 @@
-package de.dhbw.christian.EAN.abstraction;
+package de.dhbw.christian.abstraction.EAN;
 
-import de.dhbw.christian.EAN.abstraction.exceptions.EANException;
+import de.dhbw.christian.abstraction.EAN.exceptions.EANException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
-public class EAN13Test {
+public class EAN8Test {
 
-    private final String eanCode1 = "1358456248705";
-    private final String eanCode2 = "1358456248705";
-    private final String eanCode3 = "652458723";
-    private final String eanCode4 = "6524587236909";
+    private final String eanCode1 = "62514170";
+    private final String eanCode2 = "62514170";
+    private final String eanCode3 = "642187";
+    private final String eanCode4 = "64218768";
 
     @Test
     public void testCreate() {
